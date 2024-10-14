@@ -96,6 +96,7 @@ public class VendingMachineApp {
         // Continue buying items as long as the user has balance and wants to buy more.
         while (keepBuying && vendingMachine.hasBalance()) {
             vendingMachine.displayItems();  // Display the available items.
+
             // Ask the user to select the item they want to buy.
             System.out.print("Enter the item number you want to buy: ");
             int itemNumber = getValidIntInput(scanner);  // Get valid integer input for the item number.
@@ -105,12 +106,26 @@ public class VendingMachineApp {
 
             // If the user still has some balance, ask if they want to buy more items.
             if (vendingMachine.getBalance() > 0) {
-                System.out.print("Do you want to buy another item? (yes/no): ");
-                String answer = scanner.next().toLowerCase();  // Convert the answer to lowercase.
-                keepBuying = answer.equals("yes");  // Continue only if the user types 'yes'.
-            }
+                boolean validResponse = false;  // Variable to track if the input is valid.
 
-            else {
+                // Keep asking the user until they enter a valid response.
+                while (!validResponse) {
+                    System.out.print("Do you want to buy another item? (yes/no): ");
+                    String answer = scanner.next().toLowerCase();  // Convert the answer to lowercase.
+
+                    // Check if the answer is 'yes' or 'no'.
+                    if (answer.equals("yes")) {
+                        keepBuying = true;
+                        validResponse = true;  // Valid input, exit loop.
+                    } else if (answer.equals("no")) {
+                        keepBuying = false;
+                        validResponse = true;  // Valid input, exit loop.
+                    } else {
+                        // If the input is neither 'yes' nor 'no', print an error message.
+                        System.out.println("Invalid input. Please enter 'yes' or 'no'.");
+                    }
+                }
+            } else {
                 // If the user runs out of balance, end the purchase.
                 System.out.println("You have no remaining balance. Ending purchase.");
                 keepBuying = false;  // Stop the purchase loop.
@@ -120,6 +135,7 @@ public class VendingMachineApp {
         // Print a thank you message at the end.
         System.out.println("Thank you for using the vending machine!");
         scanner.close();  // Close the Scanner to free up resources.
+
     }
 
     // Helper method to get valid integer input from the user.
