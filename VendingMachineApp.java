@@ -81,13 +81,22 @@ class VendingMachine {
 }
 
 // Main class to simulate the vending machine.
-public class VendingMachineApp {
+public class Lariosa_VendingMachine {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);  // Create a Scanner object to read user input.
-        // Ask the user to enter their initial balance.
-        System.out.print("Enter your initial balance: ");
-        int initialBalance = getValidIntInput(scanner);  // Get valid integer input from the user.
+        int initialBalance = 0;  // Variable to store the initial balance.
+
+        // Keep asking for the initial balance until it's valid (at least $15).
+        while (initialBalance < 15) {
+            System.out.print("Enter your initial balance: ");
+            initialBalance = getValidIntInput(scanner);  // Get valid integer input from the user.
+
+            // If the balance is less than 15, show an error message.
+            if (initialBalance < 15) {
+                System.out.println("Error: Initial balance must be at least $15. Please try again.");
+            }
+        }
 
         // Create a VendingMachine object with the initial balance.
         VendingMachine vendingMachine = new VendingMachine(initialBalance);
