@@ -81,7 +81,7 @@ class VendingMachine {
 }
 
 // Main class to simulate the vending machine.
-public class Lariosa_VendingMachine {
+public class VendingMachineApp {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);  // Create a Scanner object to read user input.
