@@ -153,6 +153,9 @@ public class VendingMachineApp {
         while (!scanner.hasNextInt()) {
             System.out.println("Invalid input. Please enter a valid number.");  // Error message for invalid input.
             scanner.next();  // Discard the invalid input.
+
+            System.out.println("man you suck");
+            System.out.println("JK im just trying to fork stuff ");
         }
         return scanner.nextInt();  // Return the valid integer input.
     }
